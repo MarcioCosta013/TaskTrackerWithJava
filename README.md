@@ -1,4 +1,7 @@
 # Rastreador de tarefas
+[Link da ideia de projeto](https://roadmap.sh/projects/task-tracker)
+
+##### O Task tracker é um projeto usado para rastrear e gerenciar suas tarefas. Nesta tarefa, você construirá uma interface de linha de comando (CLI) simples para rastrear o que você precisa fazer, o que você fez e no que você está trabalhando atualmente. Este projeto ajudará você a praticar suas habilidades de programação, incluindo trabalhar com o sistema de arquivos, manipular entradas do usuário e construir um aplicativo CLI simples.
 
 #### **Requisitos:**
 
@@ -25,8 +28,8 @@ O aplicativo deve ser executado a partir da linha de comando, aceitar ações e 
 
 Cada tarefa deve ter as seguintes propriedades:
 
-- id: Um identificador exclusivo para a tarefa
-- description: Uma breve descrição da tarefa
-- status: O status da tarefa ( todo, in-progress, done)
-- createdAt: A data e a hora em que a tarefa foi criada
-- updatedAt: A data e a hora em que a tarefa foi atualizada pela última vez
+- *id*: Um identificador exclusivo para a tarefa
+- *description*: Uma breve descrição da tarefa
+- *status*: O status da tarefa ( todo, in-progress, done)
+- *createdAt*: A data e a hora em que a tarefa foi criada
+- *updatedAt*: A data e a hora em que a tarefa foi atualizada pela última vez
