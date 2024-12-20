@@ -12,7 +12,7 @@ import classes.TaskObj;
 public class TaskTracker {
 
     private static final String FILE_NOME = "tarefas.json";
-    private static List<TaskObj> tasks = new ArrayList<>();
+    private static List<TaskObj> tasks = loadTasks();
 
     public static void main(String[] args) throws Exception {
 
@@ -90,7 +90,7 @@ public class TaskTracker {
 
     }
 
-    //Salvando
+    // Salvando
     private static void saveTasks() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NOME))) {
             writer.write("[");
@@ -106,29 +106,31 @@ public class TaskTracker {
         }
     }
 
-    //Lendo
-    private static List<TaskObj> loadTasks(){
+    // Lendo
+    private static List<TaskObj> loadTasks() {
         List<TaskObj> loadTasks = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NOME))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NOME))) {
             StringBuilder jsonBuild = new StringBuilder();
             String line;
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 jsonBuild.append(line);
             }
             String json = jsonBuild.toString();
 
+            //verifica se a string json não está vazia ou composta apenas por espaços em branco.
             if (!json.isBlank()) {
-                String[] taskArray = json.substring(1, json.length() - 1).split("\\}, \\{");
-                for (String taskJson : taskArray){
+                //Remove os colchetes [ e ] que delimitam o array no JSON.
+                String[] taskArray = json.substring(1, json.length() - 1).split("},\\s*\\{");
+                for (String taskJson : taskArray) {
                     taskJson = taskJson.startsWith("{") ? taskJson : "{" + taskJson;
                     taskJson = taskJson.endsWith("}") ? taskJson : "}" + taskJson;
                     loadTasks.add(TaskObj.fromJson(taskJson));
                 }
             }
         } catch (FileNotFoundException e) {
-            // Arquivo não encontrado, retorna lista vazia
+            System.out.println("Arquivo não encontrado, retorna lista vazia");
         } catch (Exception e) {
-            // TODO: handle exception
+            System.err.println("Erro ao carregar tarefas: " + e.getMessage());
         }
         return loadTasks;
     }
