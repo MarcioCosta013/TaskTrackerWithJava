@@ -1,5 +1,8 @@
 # Rastreador de Tarefas
 
+[Link Roadmap com a ideia de Projeto](https://roadmap.sh/projects/task-tracker)
+To access the instructions in English, click [here](#task-tracker)
+
 O **Rastreador de Tarefas** é um aplicativo de linha de comando desenvolvido em Java que permite gerenciar suas tarefas diárias de forma eficiente.
 
 ## Funcionalidades
@@ -22,19 +25,19 @@ O **Rastreador de Tarefas** é um aplicativo de linha de comando desenvolvido em
 
    ```bash
    git clone https://github.com/MarcioCosta013/TaskTrackerWithJava.git
-   cd TaskTrackerWithJava
+   cd TaskTrackerWithJava/src
    ```
 
 2. **Compile o projeto:**
 
    ```bash
-   javac -d bin src/*.java
+   javac TaskTracker.java
    ```
 
 3. **Execute o aplicativo:**
 
    ```bash
-   java -cp bin TaskTracker
+   java TaskTracker
    ```
 
 ## Uso
@@ -44,37 +47,37 @@ O aplicativo aceita comandos através de argumentos na linha de comando:
 - **Adicionar uma tarefa:**
 
   ```bash
-  java -cp bin TaskTracker add "Descrição da tarefa" "status"
+  java TaskTracker add "Descrição da tarefa" "status"
   ```
 
   Exemplo:
 
   ```bash
-  java -cp bin TaskTracker add "Estudar para o exame" "pendente"
+  java TaskTracker add "Estudar para o exame" "in-progress"
   ```
 
 - **Atualizar uma tarefa:**
 
   ```bash
-  java -cp bin TaskTracker update <id> "Nova descrição" "novo status"
+  java TaskTracker update <id> "Nova descrição" "novo status"
   ```
 
   Exemplo:
 
   ```bash
-  java -cp bin TaskTracker update 1 "Estudar para o exame de matemática" "em andamento"
+  java TaskTracker update 1734897702550 "Estudar para o exame de matemática" "em andamento"
   ```
 
 - **Excluir uma tarefa:**
 
   ```bash
-  java -cp bin TaskTracker delete <id>
+  java TaskTracker delete <id>
   ```
 
   Exemplo:
 
   ```bash
-  java -cp bin TaskTracker delete 1
+  java TaskTracker delete 1734897702550
   ```
 
 - **Listar tarefas:**
@@ -82,25 +85,25 @@ O aplicativo aceita comandos através de argumentos na linha de comando:
   - Todas as tarefas:
 
     ```bash
-    java -cp bin TaskTracker list
+    java TaskTracker list
     ```
 
   - Tarefas concluídas:
 
     ```bash
-    java -cp bin TaskTracker list completed
+    java TaskTracker list Done
     ```
 
   - Tarefas pendentes:
 
     ```bash
-    java -cp bin TaskTracker list pending
+    java TaskTracker list todo
     ```
 
   - Tarefas em andamento:
 
     ```bash
-    java -cp bin TaskTracker list in-progress
+    java TaskTracker list in-progress
     ```
 
 ## Estrutura do Projeto
@@ -129,6 +132,9 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICEN
 ___
 
 # Task Tracker
+Para acessar as instruções em Português, clique [aqui](#rastreador-de-tarefas).
+[Link to the Project Roadmap and Concept](https://roadmap.sh/projects/task-tracker)
+
 
 The **Task Tracker** is a command-line application developed in Java that allows you to efficiently manage your daily tasks.
 
@@ -152,19 +158,19 @@ The **Task Tracker** is a command-line application developed in Java that allows
 
    ```bash
    git clone https://github.com/MarcioCosta013/TaskTrackerWithJava.git
-   cd TaskTrackerWithJava
+   cd TaskTrackerWithJava/src
    ```
 
 2. **Compile the project:**
 
    ```bash
-   javac -d bin src/*.java
+   javac TaskTracker.java
    ```
 
 3. **Run the application:**
 
    ```bash
-   java -cp bin TaskTracker
+   java TaskTracker
    ```
 
 ## Usage
@@ -174,37 +180,37 @@ The application accepts commands through command-line arguments:
 - **Add a task:**
 
   ```bash
-  java -cp bin TaskTracker add "Task description" "status"
+  java TaskTracker add "Task description" "status"
   ```
 
   Example:
 
   ```bash
-  java -cp bin TaskTracker add "Study for the exam" "pending"
+  java TaskTracker add "Study for the exam" "pending"
   ```
 
 - **Update a task:**
 
   ```bash
-  java -cp bin TaskTracker update <id> "New description" "new status"
+  java TaskTracker update <id> "New description" "new status"
   ```
 
   Example:
 
   ```bash
-  java -cp bin TaskTracker update 1 "Study for the math exam" "in progress"
+  java TaskTracker update 1734897702550 "Study for the math exam" "in progress"
   ```
 
 - **Delete a task:**
 
   ```bash
-  java -cp bin TaskTracker delete <id>
+  java TaskTracker delete <id>
   ```
 
   Example:
 
   ```bash
-  java -cp bin TaskTracker delete 1
+  java TaskTracker delete 1734897702550
   ```
 
 - **List tasks:**
@@ -212,25 +218,25 @@ The application accepts commands through command-line arguments:
   - All tasks:
 
     ```bash
-    java -cp bin TaskTracker list
+    java TaskTracker list
     ```
 
   - Completed tasks:
 
     ```bash
-    java -cp bin TaskTracker list completed
+    java TaskTracker list Done
     ```
 
   - Pending tasks:
 
     ```bash
-    java -cp bin TaskTracker list pending
+    java TaskTracker list todo
     ```
 
   - Tasks in progress:
 
     ```bash
-    java -cp bin TaskTracker list in-progress
+    java TaskTracker list in-progress
     ```
 
 ## Project Structure
