@@ -1,68 +1,257 @@
-# Rastreador de Tarefas 
+# Rastreador de Tarefas
 
-[Link da ideia de projeto](https://roadmap.sh/projects/task-tracker)
+O **Rastreador de Tarefas** é um aplicativo de linha de comando desenvolvido em Java que permite gerenciar suas tarefas diárias de forma eficiente.
 
-[Go to the session](#task-tracker)
-
-
-##### O Task tracker é um projeto usado para rastrear e gerenciar suas tarefas. Nesta tarefa, você construirá uma interface de linha de comando (CLI) simples para rastrear o que você precisa fazer, o que você fez e no que você está trabalhando atualmente. Este projeto ajudará você a praticar suas habilidades de programação, incluindo trabalhar com o sistema de arquivos, manipular entradas do usuário e construir um aplicativo CLI simples.
-
-#### **Requisitos:**
-
-O aplicativo deve ser executado a partir da linha de comando, aceitar ações e entradas do usuário como argumentos e armazenar as tarefas em um arquivo JSON. O usuário deve ser capaz de:
+## Funcionalidades
 
 - Adicionar, atualizar e excluir tarefas
-- Marcar uma tarefa como em andamento ou concluída
+- Marcar tarefas como "em andamento" ou "concluídas"
 - Listar todas as tarefas
-- Listar todas as tarefas que foram feitas
-- Liste todas as tarefas que não foram feitas
-- Listar todas as tarefas em andamento
+- Listar tarefas concluídas
+- Listar tarefas pendentes
+- Listar tarefas em andamento
 
-#### Aqui estão algumas restrições para orientar a implementação:
+## Pré-requisitos
 
-- Você pode usar qualquer linguagem de programação para construir este projeto.
-- Use argumentos posicionais na linha de comando para aceitar entradas do usuário.
-- Use um arquivo JSON para armazenar as tarefas no diretório atual.
-- O arquivo JSON deve ser criado se não existir.
-- Use o módulo do sistema de arquivos nativo da sua linguagem de programação para interagir com o arquivo JSON.
-- Não use nenhuma biblioteca ou estrutura externa para construir este projeto.
-- Certifique-se de lidar com erros e casos extremos com elegância.
+- Java Development Kit (JDK) 8 ou superior instalado
+- Variável de ambiente `JAVA_HOME` configurada
 
-#### **Propriedades da tarefa**
+## Como Compilar e Executar
 
-Cada tarefa deve ter as seguintes propriedades:
+1. **Clone o repositório:**
 
-- *id*: Um identificador exclusivo para a tarefa
-- *description*: Uma breve descrição da tarefa
-- *status*: O status da tarefa ( todo, in-progress, done)
-- *createdAt*: A data e a hora em que a tarefa foi criada
-- *updatedAt*: A data e a hora em que a tarefa foi atualizada pela última vez
+   ```bash
+   git clone https://github.com/MarcioCosta013/TaskTrackerWithJava.git
+   cd TaskTrackerWithJava
+   ```
+
+2. **Compile o projeto:**
+
+   ```bash
+   javac -d bin src/*.java
+   ```
+
+3. **Execute o aplicativo:**
+
+   ```bash
+   java -cp bin TaskTracker
+   ```
+
+## Uso
+
+O aplicativo aceita comandos através de argumentos na linha de comando:
+
+- **Adicionar uma tarefa:**
+
+  ```bash
+  java -cp bin TaskTracker add "Descrição da tarefa" "status"
+  ```
+
+  Exemplo:
+
+  ```bash
+  java -cp bin TaskTracker add "Estudar para o exame" "pendente"
+  ```
+
+- **Atualizar uma tarefa:**
+
+  ```bash
+  java -cp bin TaskTracker update <id> "Nova descrição" "novo status"
+  ```
+
+  Exemplo:
+
+  ```bash
+  java -cp bin TaskTracker update 1 "Estudar para o exame de matemática" "em andamento"
+  ```
+
+- **Excluir uma tarefa:**
+
+  ```bash
+  java -cp bin TaskTracker delete <id>
+  ```
+
+  Exemplo:
+
+  ```bash
+  java -cp bin TaskTracker delete 1
+  ```
+
+- **Listar tarefas:**
+
+  - Todas as tarefas:
+
+    ```bash
+    java -cp bin TaskTracker list
+    ```
+
+  - Tarefas concluídas:
+
+    ```bash
+    java -cp bin TaskTracker list completed
+    ```
+
+  - Tarefas pendentes:
+
+    ```bash
+    java -cp bin TaskTracker list pending
+    ```
+
+  - Tarefas em andamento:
+
+    ```bash
+    java -cp bin TaskTracker list in-progress
+    ```
+
+## Estrutura do Projeto
+
+```plaintext
+TaskTrackerWithJava/
+├── bin/                # Arquivos compilados
+├── src/                # Código fonte
+│   ├── TaskTracker.java
+│   └── TaskObj.java
+└── README.md           # Documentação
+```
+
+## Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas alterações (`git commit -m 'Adiciona nova feature'`)
+4. Faça o push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ___
 
 # Task Tracker
 
-[Voltar para a Sessão em Portuquês](#rastreador-de-tarefas)
+The **Task Tracker** is a command-line application developed in Java that allows you to efficiently manage your daily tasks.
 
-##### Task tracker is a project used to track and manage your tasks. In this task, you will build a simple command line interface (CLI) to track what you need to do, what you have done, and what you are currently working on. This project will help you practice your programming skills, including working with the filesystem, handling user inputs, and building a simple CLI application.
+## Features
 
-#### Requirements
-
-The application should run from the command line, accept user actions and inputs as arguments, and store the tasks in a JSON file. The user should be able to:
-
-- Add, Update, and Delete tasks
-- Mark a task as in progress or done
+- Add, update, and delete tasks
+- Mark tasks as "in progress" or "completed"
 - List all tasks
-- List all tasks that are done
-- List all tasks that are not done
-- List all tasks that are in progress
-- Here are some constraints to guide the implementation:
+- List completed tasks
+- List pending tasks
+- List tasks in progress
 
-#### You can use any programming language to build this project.
+## Prerequisites
 
-- Use positional arguments in command line to accept user inputs.
-- Use a JSON file to store the tasks in the current directory.
-- The JSON file should be created if it does not exist.
-- Use the native file system module of your programming language to interact with the JSON file.
-- Do not use any external libraries or frameworks to build this project.
-- Ensure to handle errors and edge cases gracefully.
+- Java Development Kit (JDK) 8 or higher installed
+- `JAVA_HOME` environment variable configured
+
+## How to Compile and Run
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/MarcioCosta013/TaskTrackerWithJava.git
+   cd TaskTrackerWithJava
+   ```
+
+2. **Compile the project:**
+
+   ```bash
+   javac -d bin src/*.java
+   ```
+
+3. **Run the application:**
+
+   ```bash
+   java -cp bin TaskTracker
+   ```
+
+## Usage
+
+The application accepts commands through command-line arguments:
+
+- **Add a task:**
+
+  ```bash
+  java -cp bin TaskTracker add "Task description" "status"
+  ```
+
+  Example:
+
+  ```bash
+  java -cp bin TaskTracker add "Study for the exam" "pending"
+  ```
+
+- **Update a task:**
+
+  ```bash
+  java -cp bin TaskTracker update <id> "New description" "new status"
+  ```
+
+  Example:
+
+  ```bash
+  java -cp bin TaskTracker update 1 "Study for the math exam" "in progress"
+  ```
+
+- **Delete a task:**
+
+  ```bash
+  java -cp bin TaskTracker delete <id>
+  ```
+
+  Example:
+
+  ```bash
+  java -cp bin TaskTracker delete 1
+  ```
+
+- **List tasks:**
+
+  - All tasks:
+
+    ```bash
+    java -cp bin TaskTracker list
+    ```
+
+  - Completed tasks:
+
+    ```bash
+    java -cp bin TaskTracker list completed
+    ```
+
+  - Pending tasks:
+
+    ```bash
+    java -cp bin TaskTracker list pending
+    ```
+
+  - Tasks in progress:
+
+    ```bash
+    java -cp bin TaskTracker list in-progress
+    ```
+
+## Project Structure
+
+```plaintext
+TaskTrackerWithJava/
+├── bin/                # Compiled files
+├── src/                # Source code
+│   ├── TaskTracker.java
+│   └── TaskObj.java
+└── README.md           # Documentation
+```
+
+## Contribution
+
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
