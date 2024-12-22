@@ -17,18 +17,17 @@ public class TaskTracker {
     public static void main(String[] args) throws Exception {
 
         if (args.length == 0) {
-            System.out.println("Uso: java TaskTracker <comando> [opções]");
+            System.out.println("Use assim: java TaskTracker <comando> [opções]");
             System.out.println("Comandos disponíveis:");
-            System.out.println("  add <descricao> <status>       - Adiciona uma nova tarefa.");
+            System.out.println("  add <descricao> <status> - Adiciona uma nova tarefa.");
             System.out.println("  update <id> <descricao>  - Atualiza uma tarefe pelo ID");
-            System.out.println("  delete <id>                   - Apaga um tarefa");
-            System.out.println(
-                    "  mark-in-progress <id>                    - Marca a Tarefa como em progresso buscando pelo ID");
-            System.out.println("  mark-done <id>                    - Marca a Tarefa como concluida buscando pelo ID");
-            System.out.println("  list                    - Mostra todas as Tarefas");
-            System.out.println("  list done                  - Mostra todas as Tarefas Concluidas");
-            System.out.println("  list todo                  - Mostra todas as Tarefas A ser feitas");
-            System.out.println("  list in-progress                  - Mostra todas as Tarefas em Progresso");
+            System.out.println("  delete <id>              - Apaga um tarefa");
+            System.out.println("  mark-in-progress <id>    - Marca a Tarefa como em progresso buscando pelo ID");
+            System.out.println("  mark-done <id>           - Marca a Tarefa como concluida buscando pelo ID");
+            System.out.println("  list                     - Mostra todas as Tarefas");
+            System.out.println("  list done                - Mostra todas as Tarefas Concluidas");
+            System.out.println("  list todo                - Mostra todas as Tarefas A ser feitas");
+            System.out.println("  list in-progress         - Mostra todas as Tarefas em Progresso");
             return;
         }
 
@@ -42,9 +41,8 @@ public class TaskTracker {
                     tasks.add(newTask);
                     saveTasks();
                     int taskId = tasks.size() - 1;
-                    System.out.println("Adicionado com sucesso! ID: " + taskId);
-                    System.out.println(newTask.toString());
-                    System.out.println(tasks);
+                    System.out.println("Adicionado com sucesso! ID da Tarefa: " + taskId);
+                    System.out.println(tasks.get(taskId));
                 } catch (Exception e) {
                     System.err.println("Erro Tente novamente!");
                 }
@@ -68,7 +66,13 @@ public class TaskTracker {
                 break;
 
             case "list":
-                System.out.println("list");
+                if (tasks.isEmpty()) {
+                    System.out.println("Nenhuma Tarefa Encontrada!");
+                } else {
+                    for(int i=0; i < tasks.size(); i++){
+                        System.out.println("ID: " + i + " "+ tasks.get(i) + "\n");
+                    }
+                }
                 break;
 
             case "list done":

@@ -3,8 +3,7 @@ package classes;
 import java.time.LocalDate;
 
 public class TaskObj {
-
-    private Long id;
+    
     private String description;
     private String status;
     private LocalDate createdAt;
@@ -16,14 +15,6 @@ public class TaskObj {
         this.status = status;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDescription() {
@@ -60,19 +51,18 @@ public class TaskObj {
 
     public String toJson() {
         return String.format(
-                "{\"id\":\"%s\",\"description\":\"%s\",\"status\":\"%s\",\"dataCriacao\":\"%s\",\"dataUltimaAlteracao\":\"%s\"}",
-                id, description, status, createdAt, updateAt);
+                "{\"description\":\"%s\",\"status\":\"%s\",\"dataCriacao\":\"%s\",\"dataUltimaAlteracao\":\"%s\"}",
+                description, status, createdAt, updateAt);
     }
 
     @Override
     public String toString() {
-        return "TaskObj [id=" + id + ", description=" + description + ", status=" + status + ", createdAt=" + createdAt
-                + ", updateAt=" + updateAt + "]";
+        return "Tarefa \n Descricao: " + description + "\n Status: " + status + "\n Data de Criação: " + createdAt
+                + "\n Ultima Alteração: " + updateAt;
     }
 
     public static TaskObj fromJson(String taskson) {
         String[] parts = taskson.replaceAll("[{}\"]", "").split(",");
-        Long id = null;
         String description = null, status = null;
         LocalDate createdAt = null, updateAt = null;
 
@@ -82,9 +72,6 @@ public class TaskObj {
             String value = keyValue[1].trim();
 
             switch (key) {
-                case "id":
-                    id = Long.parseLong(value);
-                    break;
                 case "description":
                     description = value;
                     break;
