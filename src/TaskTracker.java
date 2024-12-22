@@ -37,11 +37,11 @@ public class TaskTracker {
 
                 try {
                     LocalDate horaAtual = LocalDate.now();
-                    TaskObj newTask = new TaskObj(args[1], args[2], horaAtual, horaAtual);
+                    TaskObj newTask = new TaskObj(Long.valueOf(tasks.size()+1), args[1], args[2], horaAtual, horaAtual);
                     tasks.add(newTask);
                     saveTasks();
                     int taskId = tasks.size() - 1;
-                    System.out.println("Adicionado com sucesso! ID da Tarefa: " + taskId);
+                    System.out.println("Adicionado com sucesso! ID da Tarefa: " + (taskId + 1));
                     System.out.println(tasks.get(taskId));
                 } catch (Exception e) {
                     System.err.println("Erro Tente novamente!");
@@ -54,7 +54,27 @@ public class TaskTracker {
                 break;
 
             case "delete":
-                System.out.println("delete");
+                String taskId = args[1];
+                if (taskId.isBlank()) {
+                    System.out.println("Digite um valor!");
+                } else {
+                    boolean taskEncontrada = false;
+                    for(int i = 0; i < tasks.size(); i++){
+
+                        TaskObj task = tasks.get(i);
+
+                        if(task.getId().equals(Long.valueOf(taskId))){
+                            taskEncontrada = true;
+                            tasks.remove(i);
+                            saveTasks();
+                            System.out.println("Removida com Sucesso!");
+                        }
+                    }
+
+                    if (!taskEncontrada) {
+                        System.out.println("Tarefa não encontrada!");
+                    }
+                }
                 break;
 
             case "mark-in-progress":
@@ -70,7 +90,7 @@ public class TaskTracker {
                     System.out.println("Nenhuma Tarefa Encontrada!");
                 } else {
                     for(int i=0; i < tasks.size(); i++){
-                        System.out.println("ID: " + i + " "+ tasks.get(i) + "\n");
+                        System.out.println(tasks.get(i) + "\n");
                     }
                 }
                 break;
@@ -121,9 +141,10 @@ public class TaskTracker {
             }
             String json = jsonBuild.toString();
 
-            //verifica se a string json não está vazia ou composta apenas por espaços em branco.
+            // verifica se a string json não está vazia ou composta apenas por espaços em
+            // branco.
             if (!json.isBlank()) {
-                //Remove os colchetes [ e ] que delimitam o array no JSON.
+                // Remove os colchetes [ e ] que delimitam o array no JSON.
                 String[] taskArray = json.substring(1, json.length() - 1).split("},\\s*\\{");
                 for (String taskJson : taskArray) {
                     taskJson = taskJson.startsWith("{") ? taskJson : "{" + taskJson;
