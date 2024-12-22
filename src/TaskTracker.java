@@ -32,6 +32,7 @@ public class TaskTracker {
         }
 
         String command = args[0];
+        boolean taskEncontrada = false;
         switch (command) {
             case "add":
 
@@ -57,7 +58,6 @@ public class TaskTracker {
                 if (taskIdUp.isBlank()) {
                     System.out.println("Erro! Digite um valor!");
                 } else {
-                    boolean taskEncontrada = false;
 
                     for (TaskObj task : tasks) {
 
@@ -83,7 +83,7 @@ public class TaskTracker {
                 if (taskIdDel.isBlank()) {
                     System.out.println("Digite um valor!");
                 } else {
-                    boolean taskEncontrada = false;
+
                     for (int i = 0; i < tasks.size(); i++) {
 
                         TaskObj task = tasks.get(i);
@@ -107,7 +107,6 @@ public class TaskTracker {
                 if (taskIdMark.isBlank()) {
                     System.out.println("Erro! Digite um valor!");
                 } else {
-                    boolean taskEncontrada = false;
 
                     for (TaskObj task : tasks) {
 
@@ -132,7 +131,6 @@ public class TaskTracker {
                 if (taskIdDone.isBlank()) {
                     System.out.println("Erro! Digite um valor!");
                 } else {
-                    boolean taskEncontrada = false;
 
                     for (TaskObj task : tasks) {
 
@@ -161,15 +159,48 @@ public class TaskTracker {
                 break;
 
             case "list done":
-                System.out.println("list done");
+
+                for (int i = 0; i < tasks.size(); i++) {
+                    TaskObj task = tasks.get(i);
+                    if (task.getStatus().equals("Done")) {
+                        taskEncontrada = true;
+                        System.out.println(task);
+                    }
+                }
+
+                if (!taskEncontrada) {
+                    System.out.println("Nenhuma Tarefa encontrada!");
+                }
                 break;
 
             case "list todo":
-                System.out.println("list todo");
+
+                for (int i = 0; i < tasks.size(); i++) {
+                    TaskObj task = tasks.get(i);
+                    if (task.getStatus().equals("todo")) {
+                        taskEncontrada = true;
+                        System.out.println(task);
+                    }
+                }
+
+                if (!taskEncontrada) {
+                    System.out.println("Nenhuma Tarefa encontrada!");
+                }
                 break;
 
             case "list in-progress":
-                System.out.println("list in-progress");
+
+                for (int i = 0; i < tasks.size(); i++) {
+                    TaskObj task = tasks.get(i);
+                    if (task.getStatus().equals("in-progress")) {
+                        taskEncontrada = true;
+                        System.out.println(task);
+                    }
+                }
+
+                if (!taskEncontrada) {
+                    System.out.println("Nenhuma Tarefa encontrada!");
+                }
                 break;
 
             default:
