@@ -37,7 +37,8 @@ public class TaskTracker {
 
                 try {
                     LocalDate horaAtual = LocalDate.now();
-                    TaskObj newTask = new TaskObj(Long.valueOf(tasks.size()+1), args[1], args[2], horaAtual, horaAtual);
+                    Long uniqueId = System.currentTimeMillis();
+                    TaskObj newTask = new TaskObj(uniqueId, args[1], args[2], horaAtual, horaAtual);
                     tasks.add(newTask);
                     saveTasks();
                     int taskId = tasks.size() - 1;
@@ -58,10 +59,10 @@ public class TaskTracker {
                 } else {
                     boolean taskEncontrada = false;
 
-                    for(TaskObj task : tasks){
+                    for (TaskObj task : tasks) {
 
                         LocalDate horaAtual = LocalDate.now();
-                        if(task.getId().equals(Long.valueOf(taskIdUp))){
+                        if (task.getId().equals(Long.valueOf(taskIdUp))) {
                             taskEncontrada = true;
                             task.setDescription(descrition);
                             task.setStatus(status);
@@ -74,9 +75,7 @@ public class TaskTracker {
                     if (!taskEncontrada) {
                         System.out.println("Tarefa não encontrada!");
                     }
-                    break;
                 }
-                System.out.println("update2");
                 break;
 
             case "delete":
@@ -85,11 +84,11 @@ public class TaskTracker {
                     System.out.println("Digite um valor!");
                 } else {
                     boolean taskEncontrada = false;
-                    for(int i = 0; i < tasks.size(); i++){
+                    for (int i = 0; i < tasks.size(); i++) {
 
                         TaskObj task = tasks.get(i);
 
-                        if(task.getId().equals(Long.valueOf(taskIdDel))){
+                        if (task.getId().equals(Long.valueOf(taskIdDel))) {
                             taskEncontrada = true;
                             tasks.remove(i);
                             saveTasks();
@@ -104,19 +103,61 @@ public class TaskTracker {
                 break;
 
             case "mark-in-progress":
-                System.out.println("mark-in-progress");
+                String taskIdMark = args[1];
+                if (taskIdMark.isBlank()) {
+                    System.out.println("Erro! Digite um valor!");
+                } else {
+                    boolean taskEncontrada = false;
+
+                    for (TaskObj task : tasks) {
+
+                        LocalDate horaAtual = LocalDate.now();
+                        if (task.getId().equals(Long.valueOf(taskIdMark))) {
+                            taskEncontrada = true;
+                            task.setStatus("in-progress");
+                            task.setUpdateAt(horaAtual);
+                            saveTasks();
+                            System.out.println("Alterada com Sucesso!");
+                        }
+                    }
+
+                    if (!taskEncontrada) {
+                        System.out.println("Tarefa não encontrada!");
+                    }
+                }
                 break;
 
             case "mark-done":
-                System.out.println("mark-done");
+                String taskIdDone = args[1];
+                if (taskIdDone.isBlank()) {
+                    System.out.println("Erro! Digite um valor!");
+                } else {
+                    boolean taskEncontrada = false;
+
+                    for (TaskObj task : tasks) {
+
+                        LocalDate horaAtual = LocalDate.now();
+                        if (task.getId().equals(Long.valueOf(taskIdDone))) {
+                            taskEncontrada = true;
+                            task.setStatus("Done");
+                            task.setUpdateAt(horaAtual);
+                            saveTasks();
+                            System.out.println("Alterada com Sucesso!");
+                        }
+                    }
+
+                    if (!taskEncontrada) {
+                        System.out.println("Tarefa não encontrada!");
+                    }
+                }
                 break;
 
             case "list":
                 if (!tasks.isEmpty()) {
-                    for(int i=0; i < tasks.size(); i++){
+                    for (int i = 0; i < tasks.size(); i++) {
                         System.out.println(tasks.get(i) + "\n");
                     }
-                } // caso 
+                } // caso is Empty for true vai disparar a exceção que ja foi tratada.
                 break;
 
             case "list done":
@@ -132,13 +173,13 @@ public class TaskTracker {
                 break;
 
             default:
-                System.out.println("comando invalido, tente novamente!");
+                System.out.println("Comando invalido, tente novamente!");
                 break;
         }
 
     }
 
-    // Salvando
+    // Para Salvar e atualizar em JSON
     private static void saveTasks() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NOME))) {
             writer.write("[");
@@ -154,7 +195,7 @@ public class TaskTracker {
         }
     }
 
-    // Lendo
+    // Para ler o arquivo JSON
     private static List<TaskObj> loadTasks() {
         List<TaskObj> loadTasks = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NOME))) {
