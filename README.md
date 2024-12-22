@@ -1,6 +1,7 @@
 # Rastreador de Tarefas
 
 [Link Roadmap com a ideia de Projeto](https://roadmap.sh/projects/task-tracker)
+
 To access the instructions in English, click [here](#task-tracker)
 
 O **Rastreador de Tarefas** é um aplicativo de linha de comando desenvolvido em Java que permite gerenciar suas tarefas diárias de forma eficiente.
@@ -133,6 +134,7 @@ ___
 
 # Task Tracker
 Para acessar as instruções em Português, clique [aqui](#rastreador-de-tarefas).
+
 [Link to the Project Roadmap and Concept](https://roadmap.sh/projects/task-tracker)
 
 
