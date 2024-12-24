@@ -50,12 +50,38 @@ public class TaskTracker {
                 break;
 
             case "update":
+                String taskIdUp = args[1];
+                String descrition = args[2];
+                String status = args[3];
+                if (taskIdUp.isBlank()) {
+                    System.out.println("Erro! Digite um valor!");
+                } else {
+                    boolean taskEncontrada = false;
+
+                    for(TaskObj task : tasks){
+
+                        LocalDate horaAtual = LocalDate.now();
+                        if(task.getId().equals(Long.valueOf(taskIdUp))){
+                            taskEncontrada = true;
+                            task.setDescription(descrition);
+                            task.setStatus(status);
+                            task.setUpdateAt(horaAtual);
+                            saveTasks();
+                            System.out.println("Alterada com Sucesso!");
+                            break;
+                        }
+                    }
+                    if (!taskEncontrada) {
+                        System.out.println("Tarefa não encontrada!");
+                    }
+                    break;
+                }
                 System.out.println("update2");
                 break;
 
             case "delete":
-                String taskId = args[1];
-                if (taskId.isBlank()) {
+                String taskIdDel = args[1];
+                if (taskIdDel.isBlank()) {
                     System.out.println("Digite um valor!");
                 } else {
                     boolean taskEncontrada = false;
@@ -63,7 +89,7 @@ public class TaskTracker {
 
                         TaskObj task = tasks.get(i);
 
-                        if(task.getId().equals(Long.valueOf(taskId))){
+                        if(task.getId().equals(Long.valueOf(taskIdDel))){
                             taskEncontrada = true;
                             tasks.remove(i);
                             saveTasks();
@@ -86,13 +112,11 @@ public class TaskTracker {
                 break;
 
             case "list":
-                if (tasks.isEmpty()) {
-                    System.out.println("Nenhuma Tarefa Encontrada!");
-                } else {
+                if (!tasks.isEmpty()) {
                     for(int i=0; i < tasks.size(); i++){
                         System.out.println(tasks.get(i) + "\n");
                     }
-                }
+                } // caso 
                 break;
 
             case "list done":
@@ -153,7 +177,7 @@ public class TaskTracker {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Arquivo não encontrado, retorna lista vazia");
+            System.out.println("Nenhuma Tarefa encontrada!");
         } catch (Exception e) {
             System.err.println("Erro ao carregar tarefas: " + e.getMessage());
         }

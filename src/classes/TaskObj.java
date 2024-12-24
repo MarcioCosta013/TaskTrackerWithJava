@@ -47,10 +47,6 @@ public class TaskObj {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public LocalDate getUpdateAt() {
         return updateAt;
     }
