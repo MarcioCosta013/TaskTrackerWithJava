@@ -1,5 +1,7 @@
 # Rastreador de Tarefas
 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+
 [Link Roadmap com a ideia de Projeto](https://roadmap.sh/projects/task-tracker)
 
 To access the instructions in English, click [here](#task-tracker)
